@@ -21,35 +21,39 @@ export async function loader({request, context}: LoaderFunctionArgs) {
     pageBy: 20,
   });
 
-  const {data, errors} = await context.customerAccount.query(
-    CUSTOMER_ORDERS_QUERY,
-    {
-      variables: {
-        ...paginationVariables,
-      },
-    },
-  );
+  // const {data, errors} = await context.customerAccount.query(
+  //   CUSTOMER_ORDERS_QUERY,
+  //   {
+  //     variables: {
+  //       ...paginationVariables,
+  //     },
+  //   },
+  // );
 
-  if (errors?.length || !data?.customer) {
-    throw Error('Customer orders not found');
-  }
+  // if (errors?.length || !data?.customer) {
+  //   throw Error('Customer orders not found');
+  // }
 
-  return json(
-    {customer: data.customer},
-    {
-      headers: {
-        'Set-Cookie': await context.session.commit(),
-      },
-    },
-  );
+  // return json(
+  //   {customer: data.customer},
+  //   {
+  //     headers: {
+  //       'Set-Cookie': await context.session.commit(),
+  //     },
+  //   },
+  // );
+  return json()
 }
 
 export default function Orders() {
-  const {customer} = useLoaderData<{customer: CustomerOrdersFragment}>();
-  const {orders} = customer;
+  // const {customer} = useLoaderData<{customer: CustomerOrdersFragment}>();
+  // const {orders} = customer;
   return (
-    <div className="orders">
-      {orders.nodes.length ? <OrdersTable orders={orders} /> : <EmptyOrders />}
+    // <div className="orders">
+    //   {orders.nodes.length ? <OrdersTable orders={orders} /> : <EmptyOrders />}
+    // </div>
+    <div>
+      Testing
     </div>
   );
 }
