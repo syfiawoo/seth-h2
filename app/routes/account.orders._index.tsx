@@ -17,9 +17,9 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader({request, context}: LoaderFunctionArgs) {
-  const paginationVariables = getPaginationVariables(request, {
-    pageBy: 20,
-  });
+  // const paginationVariables = getPaginationVariables(request, {
+  //   pageBy: 20,
+  // });
 
   // const {data, errors} = await context.customerAccount.query(
   //   CUSTOMER_ORDERS_QUERY,
@@ -42,7 +42,7 @@ export async function loader({request, context}: LoaderFunctionArgs) {
   //     },
   //   },
   // );
-  return json()
+  return json({test:"test"})
 }
 
 export default function Orders() {
@@ -58,32 +58,32 @@ export default function Orders() {
   );
 }
 
-function OrdersTable({orders}: Pick<CustomerOrdersFragment, 'orders'>) {
-  return (
-    <div className="acccount-orders">
-      {orders?.nodes.length ? (
-        <Pagination connection={orders}>
-          {({nodes, isLoading, PreviousLink, NextLink}) => {
-            return (
-              <>
-                <PreviousLink>
-                  {isLoading ? 'Loading...' : <span>↑ Load previous</span>}
-                </PreviousLink>
-                {nodes.map((order) => {
-                  return <OrderItem key={order.id} order={order} />;
-                })}
-                <NextLink>
-                  {isLoading ? 'Loading...' : <span>Load more ↓</span>}
-                </NextLink>
-              </>
-            );
-          }}
-        </Pagination>
-      ) : (
-        <EmptyOrders />
-      )}
-    </div>
-  );
+// function OrdersTable({orders}: Pick<CustomerOrdersFragment, 'orders'>) {
+//   return (
+//     <div className="acccount-orders">
+//       {orders?.nodes.length ? (
+//         <Pagination connection={orders}>
+//           {({nodes, isLoading, PreviousLink, NextLink}) => {
+//             return (
+//               <>
+//                 <PreviousLink>
+//                   {isLoading ? 'Loading...' : <span>↑ Load previous</span>}
+//                 </PreviousLink>
+//                 {nodes.map((order) => {
+//                   return <OrderItem key={order.id} order={order} />;
+//                 })}
+//                 <NextLink>
+//                   {isLoading ? 'Loading...' : <span>Load more ↓</span>}
+//                 </NextLink>
+//               </>
+//             );
+//           }}
+//         </Pagination>
+//       ) : (
+//         <EmptyOrders />
+//       )}
+//     </div>
+//   );
 }
 
 function EmptyOrders() {
