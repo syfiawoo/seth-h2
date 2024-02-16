@@ -84,35 +84,35 @@ export default function Orders() {
 //       )}
 //     </div>
 //   );
-}
+// }
 
-function EmptyOrders() {
-  return (
-    <div>
-      <p>You haven&apos;t placed any orders yet.</p>
-      <br />
-      <p>
-        <Link to="/collections">Start Shopping →</Link>
-      </p>
-    </div>
-  );
-}
+// function EmptyOrders() {
+//   return (
+//     <div>
+//       <p>You haven&apos;t placed any orders yet.</p>
+//       <br />
+//       <p>
+//         <Link to="/collections">Start Shopping →</Link>
+//       </p>
+//     </div>
+//   );
+// }
 
-function OrderItem({order}: {order: OrderItemFragment}) {
-  const fulfillmentStatus = flattenConnection(order.fulfillments)[0].status;
-  return (
-    <>
-      <fieldset>
-        <Link to={`/account/orders/${order.id}`}>
-          <strong>#{order.number}</strong>
-        </Link>
-        <p>{new Date(order.processedAt).toDateString()}</p>
-        <p>{order.financialStatus}</p>
-        <p>{fulfillmentStatus}</p>
-        <Money data={order.totalPrice} />
-        <Link to={`/account/orders/${btoa(order.id)}`}>View Order →</Link>
-      </fieldset>
-      <br />
-    </>
-  );
-}
+// function OrderItem({order}: {order: OrderItemFragment}) {
+//   const fulfillmentStatus = flattenConnection(order.fulfillments)[0].status;
+//   return (
+//     <>
+//       <fieldset>
+//         <Link to={`/account/orders/${order.id}`}>
+//           <strong>#{order.number}</strong>
+//         </Link>
+//         <p>{new Date(order.processedAt).toDateString()}</p>
+//         <p>{order.financialStatus}</p>
+//         <p>{fulfillmentStatus}</p>
+//         <Money data={order.totalPrice} />
+//         <Link to={`/account/orders/${btoa(order.id)}`}>View Order →</Link>
+//       </fieldset>
+//       <br />
+//     </>
+//   );
+// }
