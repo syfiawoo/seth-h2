@@ -1,6 +1,10 @@
+import type {AppSession} from './session';
 import type {Locale} from './type';
 
-export function getLocaleFromRequest(request: Request): Locale {
+export async function getLocaleFromRequest(
+  request: Request,
+  session: AppSession,
+): Promise<Locale> {
   // Get the user request URL
   const url = new URL(request.url);
 
@@ -13,6 +17,9 @@ export function getLocaleFromRequest(request: Request): Locale {
       };
       break;
     case 'fr.headlesseth.net':
+      const headers = new Headers();
+      session.set('locale', 'FR');
+      headers.set('Set-Cookie', await session.commit());
       return {
         language: 'FR',
         country: 'CA',

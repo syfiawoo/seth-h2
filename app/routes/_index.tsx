@@ -12,16 +12,18 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader({context}: LoaderFunctionArgs) {
-  const {storefront} = context;
+  const {storefront, session} = context;
+  const locale = await session.get('locale');
   const {collections} = await storefront.query(FEATURED_COLLECTION_QUERY);
   const featuredCollection = collections.nodes[0];
   const recommendedProducts = storefront.query(RECOMMENDED_PRODUCTS_QUERY);
 
-  return defer({featuredCollection, recommendedProducts});
+  return defer({featuredCollection, recommendedProducts, locale});
 }
 
 export default function Homepage() {
   const data = useLoaderData<typeof loader>();
+  console.log(data);
   return (
     <div className="home">
       <FeaturedCollection collection={data.featuredCollection} />
