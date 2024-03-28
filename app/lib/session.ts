@@ -23,6 +23,7 @@ export class AppSession implements HydrogenSession {
     const storage = createCookieSessionStorage({
       cookie: {
         name: 'session',
+        domain: 'headlesseth.net',
         httpOnly: true,
         path: '/',
         sameSite: 'lax',
