@@ -1,5 +1,15 @@
+import {createCookie} from '@shopify/remix-oxygen';
 import type {AppSession} from './session';
 import type {Locale} from './type';
+
+const localeCookie = createCookie('locale', {
+  // These are defaults for this cookie.
+  path: '/',
+  sameSite: 'lax',
+  httpOnly: true,
+  secure: true,
+  domain: 'headlesseth.net',
+});
 
 export async function getLocaleFromRequest(
   request: Request,
@@ -18,8 +28,11 @@ export async function getLocaleFromRequest(
       break;
     case 'fr.headlesseth.net':
       const headers = new Headers();
-      session.set('locale', 'FR');
-      headers.set('Set-Cookie', await session.commit());
+      const cookieHeader = headers.get('Cookie');
+      const cookie = (await localeCookie.parse(cookieHeader)) || {};
+      //   session.set('locale', 'FR');
+      cookie.locale = 'FR';
+      headers.set('Set-Cookie', await localeCookie.serialize(cookie));
       return {
         language: 'FR',
         country: 'CA',
