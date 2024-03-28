@@ -28,11 +28,11 @@ export async function getLocaleFromRequest(
       break;
     case 'fr.headlesseth.net':
       const headers = new Headers();
-      const cookieHeader = headers.get('Cookie');
-      const cookie = (await localeCookie.parse(cookieHeader)) || {};
-      //   session.set('locale', 'FR');
-      cookie.locale = 'FR';
-      headers.set('Set-Cookie', await localeCookie.serialize(cookie));
+      //   const cookieHeader = headers.get('Cookie');
+      //   const cookie = (await localeCookie.parse(cookieHeader)) || {};
+      session.set('locale', 'FR');
+      //   cookie.locale = 'FR';
+      headers.set('Set-Cookie', await session.commit());
       return {
         language: 'FR',
         country: 'CA',
