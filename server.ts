@@ -70,6 +70,7 @@ export default {
        * create and update the cart in the session.
        */
       const cart = createCartHandler({
+        customerAccount,
         storefront,
         getCartId: cartGetIdDefault(request.headers),
         setCartId: cartSetIdDefault(),
