@@ -7,7 +7,7 @@ const config = {
   ignoreRedirects: true, // Set to false if you aren't redirecting to Hydrogen in your theme
 };
 
-export async function loader({request, context}: LoaderFunctionArgs) {
+export async function action({request, context}: LoaderFunctionArgs) {
   const {
     shop: {
       primaryDomain: {url},
