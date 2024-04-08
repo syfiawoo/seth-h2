@@ -81,7 +81,10 @@ export async function action({request, context}: LoaderFunctionArgs) {
   );
   console.log('data', up_path);
   return redirect(up_path, {
-    headers: response.headers,
+    headers: {
+      ...response.headers,
+      'Access-Control-Allow-Origin': '*',
+    },
   });
 
   // return redirect(`${url}/wallets/checkouts.json`, {
